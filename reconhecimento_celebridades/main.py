@@ -22,7 +22,7 @@ def recognize_celebrities(photo: str) -> RecognizeCelebritiesResponseTypeDef:
 def draw_boxes(image_path: str, output_path: str, face_details: list[CelebrityTypeDef]):
     image = Image.open(image_path)
     draw = ImageDraw.Draw(image)
-    font = ImageFont.truetype("Ubuntu-R.ttf", 20)
+    #font = ImageFont.truetype("Ubuntu-R.ttf", 20)
 
     width, height = image.size
 
@@ -39,9 +39,9 @@ def draw_boxes(image_path: str, output_path: str, face_details: list[CelebrityTy
 
             text = face.get("Name", "")
             position = (left, top - 20)
-            bbox = draw.textbbox(position, text, font=font)
+            bbox = draw.textbbox(position, text)
             draw.rectangle(bbox, fill="red")
-            draw.text(position, text, font=font, fill="white")
+            draw.text(position, text, fill="white")
 
     image.save(output_path)
     print(f"Imagem salva com resultados em : {output_path}")
